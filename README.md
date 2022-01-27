@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/davidkaggulire/kafkacli_interfaces/branch/main/graph/badge.svg?token=2mBLoY7QPT)](https://codecov.io/gh/davidkaggulire/kafkacli_interfaces)
+
 # kafkacli_interfaces
 A project to experiment with message broker configurations while making use of software design patterns i.e. interfaces
 
