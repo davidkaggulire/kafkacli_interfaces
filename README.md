@@ -30,7 +30,7 @@ To run the tests, use
 ### Generate coverage report
 Use the commands below to print out a simple command-line report.
 
-coverage report -m
+```coverage report -m```
 
 
 ## Important to note
