@@ -1,6 +1,6 @@
 # message_system
 
-from broker import IMessageBroker, KafkaBroker
+from broker import IMessageBroker, KafkaBroker, KafkaBrokerListener
 
 
 class MessagingSystem:
@@ -25,7 +25,7 @@ class MessagingSystem:
 
 data = {
     'command': 'send',
-    'channel': 'chat',
+    'channel': 'talkchat',
     'server': 'localhost:9092',
     'group': "hello",
     'from': 'start',
@@ -34,12 +34,16 @@ data = {
 
 data2 = {
     'command': 'send',
-    'channel': 'chat',
+    'channel': 'talkchat',
     'server': 'localhost:9092',
     'group': "hello",
     'from': 'start'
 }
 
 # ms = MessagingSystem(KafkaBroker())
+# ms.sendMessages(data)
+# ms.readMessages(data2)
+
+# ms = MessagingSystem(KafkaBrokerListener())
 # ms.sendMessages(data)
 # ms.readMessages(data2)
