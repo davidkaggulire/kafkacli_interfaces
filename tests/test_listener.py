@@ -8,6 +8,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from broker.kafka_broker_listener import KafkaBrokerListener
+from broker.inmemory_broker import InMemoryBroker
 from message_system import MessagingSystem
 
 
@@ -21,7 +22,8 @@ def service(getBroker):
 @pytest.fixture
 def getBroker():
     """return broker"""
-    return KafkaBrokerListener()
+    # return KafkaBrokerListener()
+    return InMemoryBroker()
 
 
 def test_send_messages(service):
@@ -39,6 +41,16 @@ def test_send_messages(service):
 
 
 def test_read_messages(service):
+    data = {
+        'command': 'send',
+        'channel': 'stoplistener',
+        'server': 'localhost:9092',
+        'group': "hello",
+        'from': 'start',
+        "message": "welcome Uganda"
+    }
+    service.sendMessages(data)
+
     data2 = {
         'command': 'send',
         'channel': 'stoplistener',
