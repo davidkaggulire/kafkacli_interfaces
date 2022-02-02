@@ -1,6 +1,6 @@
 # message_system
 
-from broker import IMessageBroker, KafkaBroker, KafkaBrokerListener
+from broker import IMessageBroker, KafkaBroker, KafkaBrokerListener, InMemoryBroker
 
 
 class MessagingSystem:
@@ -32,12 +32,21 @@ data = {
     "message": "Welcome to Uganda"
 }
 
+# data = {
+#     'command': 'send',
+#     'channel': 'talkchat',
+#     'server': 'localhost:9092',
+#     'group': "hello",
+#     'from': 'start',
+#     "message": "stop session"
+# }
+
 data2 = {
-    'command': 'send',
+    'command': 'receive',
     'channel': 'talkchat',
     'server': 'localhost:9092',
     'group': "hello",
-    'from': 'start'
+    'from': 'start',
 }
 
 # ms = MessagingSystem(KafkaBroker())
@@ -47,3 +56,7 @@ data2 = {
 # ms = MessagingSystem(KafkaBrokerListener())
 # ms.sendMessages(data)
 # ms.readMessages(data2)
+
+ms = MessagingSystem(InMemoryBroker())
+ms.sendMessages(data)
+ms.readMessages(data2)
