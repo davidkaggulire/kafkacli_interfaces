@@ -1,7 +1,5 @@
 # inmemory_broker.py
 
-import logging
-
 from .broker_interface import IMessageBroker
 
 
@@ -19,14 +17,14 @@ class InMemoryBroker(IMessageBroker):
         return True
 
     def producer(self, queue, args):
-        """getting message from the network."""  
+        """getting message from the network."""
         message = args['message']
         # saving message to broker
         queue.append(message)
         print(queue)
         print(f"Producer got message: *{message}* from network")
         print("Producer... Exiting")
-        
+
     def consumer(self, queue):
         """retrieving received message."""
         message = queue.pop(0)
