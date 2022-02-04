@@ -57,6 +57,6 @@ data2 = {
 # ms.sendMessages(data)
 # ms.readMessages(data2)
 
-ms = MessagingSystem(InMemoryBroker())
-ms.sendMessages(data)
-ms.readMessages(data2)
+# ms = MessagingSystem(InMemoryBroker())
+# ms.sendMessages(data)
+# ms.readMessages(data2)
