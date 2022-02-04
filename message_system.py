@@ -1,6 +1,7 @@
 # message_system
 
 from broker import IMessageBroker, KafkaBroker, KafkaBrokerListener, InMemoryBroker
+from broker import KafkaBrokerMock
 
 
 class MessagingSystem:
