@@ -4,9 +4,18 @@ from confluent_kafka import Producer, Consumer
 import argparse
 import sys
 from .broker_interface import IMessageBroker
-
+import time
 
 class KafkaBrokerListener(IMessageBroker):
+
+    def __init__(self) -> None:
+        self.listen = True
+
+    def set_listener(self):
+        """ variable to stop consumer from running"""
+        self.listen = False
+        # print(self.listen)
+        return self.listen
 
     def parsed_args(self, args):
         """
@@ -95,7 +104,7 @@ class KafkaBrokerListener(IMessageBroker):
         c.subscribe([args['channel']])
 
         try:
-            while True:
+            while self.listen:
                 msg = c.poll(1.0)
 
                 if msg is None:
@@ -107,10 +116,10 @@ class KafkaBrokerListener(IMessageBroker):
                 var = msg.value().decode('utf-8')
                 print(f"Received message: {var}")
 
-                # unsubscribing or unassigning topic from consumer
-                if args['channel'] == "stoplistener":
-                    c.unassign([args['channel']])
-                    # c.unsubscribe([args['channel']])
+                # # unsubscribing or unassigning topic from consumer
+                # if args['channel'] == "stoplistener":
+                #     c.unassign([args['channel']])
+                #     # c.unsubscribe([args['channel']])
 
         except KeyboardInterrupt:
             sys.stderr.write('%% Aborted by user\n')
