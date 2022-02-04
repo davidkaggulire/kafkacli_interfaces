@@ -144,29 +144,6 @@ class TestChatApp(unittest.TestCase):
         response = self.broker.sendMessages(args)
         self.assertEqual(response, True)
 
-
-    # @patch('broker.kafka_broker.KafkaBroker')
-    # def test_read_messages(self):
-    #     """test reading message from Kafka"""
-    #     data = {
-    #         'command': 'send',
-    #         'channel': 'chat',
-    #         'server': 'localhost:9092',
-    #         'group': "hello",
-    #         'from': 'start',
-    #         "message": "stopsession"
-    #     }
-    #     args = {
-    #         'command': 'send',
-    #         'channel': 'chat',
-    #         'server': 'localhost:9092',
-    #         'group': "hello",
-    #         'from': 'start'
-    #     }
-    #     self.broker.sendMessages(data)
-    #     received = self.broker.readMessages(args)
-    #     self.assertEqual(True, received)
-
     @patch('broker.kafka_mock.KafkaBrokerMock')
     def test_consume_messages(self, mock_consumer):
         args = {'command': 'receive', 'channel': 'chat',
