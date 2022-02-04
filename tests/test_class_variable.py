@@ -69,12 +69,10 @@ def test_read_messages(service):
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         executor.submit(service.readMessages, data2)
-        assert True
         time.sleep(1)
+        
+        # set listener to stop  consumer from running
         service.set_listener()
-        logging.info("Main: about to set event")
-        event.set()
-        logging.info(service.set_listener())
 
     output = service.readMessages(data2)
     assert output is True
